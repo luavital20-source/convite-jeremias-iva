@@ -41,12 +41,7 @@
     transition:opacity .8s ease, visibility .8s ease;
   }
   #preloader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-  #preloader .mono-badge{
-    width:134px;height:134px;border-radius:50%;background:var(--cream);
-    display:flex;align-items:center;justify-content:center;margin-bottom:24px;
-    box-shadow:0 14px 44px -14px rgba(0,0,0,.45);
-  }
-  #preloader .mono-badge img{width:120px;height:120px;object-fit:contain;border-radius:50%;}
+  #preloader .mono{width:158px;height:auto;margin-bottom:20px;opacity:.97;}
   #preloader .names{
     font-family:'Pinyon Script',cursive;font-size:44px;margin-bottom:6px;color:#fff;
   }
@@ -74,7 +69,7 @@
   }
   .hero-content{
     position:absolute;bottom:0;left:0;right:0;z-index:2;
-    text-align:center;padding:0 30px 34px 30px;
+    text-align:center;padding:0 30px 72px 30px;
   }
   .hero-names{
     font-family:'Cormorant Garamond',serif;font-weight:500;
@@ -122,6 +117,10 @@
     width:100%;height:190px;object-fit:cover;border-radius:16px;margin-bottom:22px;
     box-shadow:0 14px 36px -18px rgba(60,60,52,.3);display:block;
   }
+  .venue-photo.full{
+    height:auto;object-fit:contain;background:var(--sage-pale);
+    max-height:360px;
+  }
   .venue-time{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--sage-dark);margin-bottom:4px;}
   .venue-name{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);margin-bottom:10px;line-height:1.2;}
   .venue-addr{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:22px;}
@@ -157,10 +156,6 @@
   .tip b{color:var(--text);font-weight:500;}
 
   /* DRESS CODE */
-  .dress-photo{
-    width:100%;max-height:420px;object-fit:cover;border-radius:16px;margin-top:8px;
-    box-shadow:0 14px 36px -18px rgba(60,60,52,.3);display:block;
-  }
   .palette{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:26px;}
   .palette .dot{
     width:38px;height:38px;border-radius:50%;
@@ -209,7 +204,7 @@
 
   /* FOOTER */
   footer{padding:60px 32px 54px 32px;text-align:center;}
-  footer .mono{width:96px;margin-bottom:14px;mix-blend-mode:multiply;}
+  footer .mono{width:108px;margin-bottom:14px;}
   footer .names{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);}
   footer .names em{font-family:'Pinyon Script',cursive;font-style:normal;color:var(--gold);padding:0 4px;}
   footer .date{font-size:11px;letter-spacing:3px;color:var(--muted);margin-top:8px;}
@@ -232,7 +227,7 @@
 <body>
 
 <div id="preloader">
-  <div class="mono-badge"><img src="monograma.jpg" alt="Jeremias e Iva" onerror="this.parentElement.style.display='none'"></div>
+  <img class="mono" src="monograma-light.png" alt="Jeremias e Iva" onerror="this.style.display='none'">
   <div class="names">Jeremias &amp; Iva</div>
   <div class="sub">24 · 10 · 2026</div>
   <div class="tap">Toque para abrir</div>
@@ -281,7 +276,7 @@
   <!-- CERIMÔNIA & RECEPÇÃO -->
   <section class="reveal" style="padding-top:0;">
     <div class="badge">CERIMÔNIA</div>
-    <img class="venue-photo" src="foto-cerimonia.jpg" alt="Local da cerimônia" onerror="this.style.display='none'">
+    <img class="venue-photo full" src="foto-cerimonia.jpg" alt="Paróquia Nossa Senhora das Graças" onerror="this.style.display='none'">
     <div class="venue-time">às 16h00</div>
     <div class="venue-name">Paróquia Nossa Senhora<br>das Graças</div>
     <div class="venue-addr">
@@ -360,7 +355,9 @@
         <li>Roupas muito curtas ou decotadas</li>
       </ul>
 
-      <img class="dress-photo" src="dress-code.jpg" alt="Manual do convidado — dress code" style="margin-top:28px;" onerror="this.style.display='none'">
+      <p class="dress-note" style="font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;color:var(--sage-dark);margin-top:26px;">
+        O importante é que você se sinta bem e confortável para aproveitar cada momento!
+      </p>
     </div>
   </section>
 
@@ -450,7 +447,7 @@
 
   <!-- FOOTER -->
   <footer class="reveal">
-    <img class="mono" src="monograma.jpg" alt="Jeremias e Iva" onerror="this.style.display='none'">
+    <img class="mono" src="monograma.png" alt="Jeremias e Iva" onerror="this.style.display='none'">
     <div class="names">Jeremias <em>&amp;</em> Iva</div>
     <div class="date">24 DE OUTUBRO DE 2026</div>
     <div class="verse">&ldquo;Para onde fores, irei; onde tu repousares, repousarei.&rdquo;<br>— Rute 1:16</div>
