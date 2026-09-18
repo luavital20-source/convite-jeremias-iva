@@ -41,9 +41,12 @@
     transition:opacity .8s ease, visibility .8s ease;
   }
   #preloader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
-  #preloader .mono{
-    width:120px;height:auto;margin-bottom:22px;filter:brightness(0) invert(1);opacity:.94;
+  #preloader .mono-badge{
+    width:134px;height:134px;border-radius:50%;background:var(--cream);
+    display:flex;align-items:center;justify-content:center;margin-bottom:24px;
+    box-shadow:0 14px 44px -14px rgba(0,0,0,.45);
   }
+  #preloader .mono-badge img{width:120px;height:120px;object-fit:contain;border-radius:50%;}
   #preloader .names{
     font-family:'Pinyon Script',cursive;font-size:44px;margin-bottom:6px;color:#fff;
   }
@@ -73,7 +76,6 @@
     position:absolute;bottom:0;left:0;right:0;z-index:2;
     text-align:center;padding:0 30px 34px 30px;
   }
-  .hero-mono{width:58px;height:auto;margin-bottom:14px;opacity:.97;}
   .hero-names{
     font-family:'Cormorant Garamond',serif;font-weight:500;
     font-size:46px;color:#2f2f28;line-height:1.1;
@@ -159,15 +161,24 @@
     width:100%;max-height:420px;object-fit:cover;border-radius:16px;margin-top:8px;
     box-shadow:0 14px 36px -18px rgba(60,60,52,.3);display:block;
   }
-  .palette{display:flex;justify-content:center;gap:14px;margin-top:26px;}
-  .palette .sw{text-align:center;}
+  .palette{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:26px;}
   .palette .dot{
-    width:46px;height:46px;border-radius:50%;margin:0 auto 8px;
+    width:38px;height:38px;border-radius:50%;
     box-shadow:0 8px 20px -8px rgba(60,60,52,.4);border:2px solid #fff;
   }
-  .palette .cname{font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
-  .dress-note{font-size:13.5px;line-height:1.9;color:#5c5c50;max-width:320px;margin:24px auto 0;}
+  .dress-note{font-size:13.5px;line-height:1.9;color:#5c5c50;max-width:340px;margin:22px auto 0;}
   .dress-note b{color:var(--text);font-weight:500;}
+  .dress-cols{display:flex;gap:14px;margin-top:26px;text-align:left;}
+  .dress-cols > div{flex:1;background:var(--sage-pale);border-radius:14px;padding:18px 16px;}
+  .dress-cols h4{font-size:10.5px;letter-spacing:2px;color:var(--sage-dark);text-transform:uppercase;margin-bottom:8px;font-weight:600;}
+  .dress-cols .traje{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--sage-dark);margin-bottom:8px;}
+  .dress-cols p{font-size:12px;line-height:1.6;color:#5c5c50;}
+  .dress-sub{font-size:11.5px;letter-spacing:2.5px;color:var(--gold);margin:30px 0 10px;font-weight:500;}
+  .avoid{list-style:none;max-width:320px;margin:0 auto;text-align:left;}
+  .avoid li{font-size:12.5px;line-height:1.5;color:#5c5c50;padding:7px 0 7px 26px;position:relative;border-bottom:1px solid var(--line);}
+  .avoid li::before{content:'✕';position:absolute;left:4px;top:7px;color:var(--sage);font-size:11px;}
+  .obs{font-size:12px;line-height:1.7;color:var(--muted);margin-top:20px;background:var(--sage-pale);border-radius:12px;padding:14px 16px;}
+  .obs b{color:var(--sage-dark);}
 
   .music-note{
     display:inline-flex;align-items:center;gap:8px;
@@ -198,7 +209,7 @@
 
   /* FOOTER */
   footer{padding:60px 32px 54px 32px;text-align:center;}
-  footer .mono{width:66px;margin-bottom:16px;}
+  footer .mono{width:96px;margin-bottom:14px;mix-blend-mode:multiply;}
   footer .names{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);}
   footer .names em{font-family:'Pinyon Script',cursive;font-style:normal;color:var(--gold);padding:0 4px;}
   footer .date{font-size:11px;letter-spacing:3px;color:var(--muted);margin-top:8px;}
@@ -221,7 +232,7 @@
 <body>
 
 <div id="preloader">
-  <img class="mono" src="monograma.png" alt="" onerror="this.style.display='none'">
+  <div class="mono-badge"><img src="monograma.jpg" alt="Jeremias e Iva" onerror="this.parentElement.style.display='none'"></div>
   <div class="names">Jeremias &amp; Iva</div>
   <div class="sub">24 · 10 · 2026</div>
   <div class="tap">Toque para abrir</div>
@@ -234,7 +245,6 @@
   <div class="hero">
     <img src="foto-casal.jpg" alt="Jeremias e Iva" onerror="this.style.display='none'">
     <div class="hero-content">
-      <img class="hero-mono" src="monograma.png" alt="" onerror="this.style.display='none'">
       <div class="hero-names">Jeremias <span class="amp">&amp;</span> Iva</div>
       <div class="hero-loc">FORTALEZA · CEARÁ</div>
     </div>
@@ -305,16 +315,52 @@
     <div class="diamond-divider"></div>
 
     <div class="card" style="margin-top:8px;">
-      <img class="dress-photo" src="dress-code.jpg" alt="Dress code" onerror="this.style.display='none'">
+      <p class="dress-note" style="margin-top:0;">
+        Vista o que te faz bem, e venha celebrar conosco! O traje é <b>esporte fino</b>.
+      </p>
+
+      <div class="dress-cols">
+        <div>
+          <h4>Para eles</h4>
+          <div class="traje">Esporte fino</div>
+          <p>Blazer, camisa, calça social ou de alfaiataria e sapato fechado.</p>
+        </div>
+        <div>
+          <h4>Para elas</h4>
+          <div class="traje">Esporte fino</div>
+          <p>Vestidos, macacões, conjuntos e saias longas ou midi são bem-vindos.</p>
+        </div>
+      </div>
+
+      <div class="dress-sub">PALETA DE CORES</div>
       <div class="palette">
-        <div class="sw"><div class="dot" style="background:#5a6a41;"></div><div class="cname">Verde oliva</div></div>
-        <div class="sw"><div class="dot" style="background:#3f4d2e;"></div><div class="cname">Oliva escuro</div></div>
-        <div class="sw"><div class="dot" style="background:#a2833f;"></div><div class="cname">Dourado</div></div>
+        <div class="dot" style="background:#4b5320;"></div>
+        <div class="dot" style="background:#6f7a56;"></div>
+        <div class="dot" style="background:#93a07d;"></div>
+        <div class="dot" style="background:#c0c9ad;"></div>
+        <div class="dot" style="background:#ddd2bd;"></div>
+        <div class="dot" style="background:#cbb79c;"></div>
+        <div class="dot" style="background:#a9856a;"></div>
+        <div class="dot" style="background:#7d5a44;"></div>
       </div>
       <p class="dress-note">
-        A paleta da celebração é <b>verde oliva</b>. Contamos com você para compor
-        conosco essa atmosfera — traje <b>social / esporte fino</b>.
+        Tons que combinam com o nosso grande dia — sinta-se à vontade para usar
+        as cores que mais te fazem bem!
       </p>
+      <div class="obs">
+        <b>OBS.:</b> o verde menta é uma cor especialmente reservada para as madrinhas.
+      </div>
+
+      <div class="dress-sub">O QUE EVITAR</div>
+      <ul class="avoid">
+        <li>Roupas casuais (jeans, camisetas, shorts e bermudas)</li>
+        <li>Tênis (exceto os sociais e minimalistas)</li>
+        <li>Chinelos e sandálias muito casuais</li>
+        <li>Bonés e acessórios esportivos</li>
+        <li>Roupas muito curtas ou decotadas</li>
+      </ul>
+
+      <img class="dress-photo" src="dress-code.jpg" alt="Manual do convidado — dress code" style="margin-top:28px;" onerror="this.style.display='none'">
     </div>
   </section>
 
@@ -339,7 +385,7 @@
       </div>
       <div class="tip">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8z"/></svg>
-        <p><b>Paleta verde oliva.</b> Vista-se em tom <b>social / esporte fino</b> e ajude a compor a atmosfera da nossa celebração.</p>
+        <p><b>Traje esporte fino.</b> Confira o nosso <b>dress code</b> completo na seção acima — na paleta verde oliva.</p>
       </div>
     </div>
   </section>
@@ -404,7 +450,7 @@
 
   <!-- FOOTER -->
   <footer class="reveal">
-    <img class="mono" src="monograma.png" alt="" onerror="this.style.display='none'">
+    <img class="mono" src="monograma.jpg" alt="Jeremias e Iva" onerror="this.style.display='none'">
     <div class="names">Jeremias <em>&amp;</em> Iva</div>
     <div class="date">24 DE OUTUBRO DE 2026</div>
     <div class="verse">&ldquo;Para onde fores, irei; onde tu repousares, repousarei.&rdquo;<br>— Rute 1:16</div>
