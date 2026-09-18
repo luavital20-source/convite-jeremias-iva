@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeremias &amp; Iva | 24.10.2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Pinyon+Script&family=Jost:wght@300;400;500;600&display=swap');
+
+  :root{
+    --cream:#faf8f2;
+    --card:#ffffff;
+    --sage:#5a6a41;
+    --sage-dark:#3f4d2e;
+    --sage-pale:#edefe2;
+    --gold:#a2833f;
+    --gold-light:#c9ad6b;
+    --text:#39392f;
+    --muted:#8a8a76;
+    --line:#e6e3d6;
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+
+  body{
+    background:var(--cream);
+    font-family:'Jost',sans-serif;
+    color:var(--text);
+    overflow-x:hidden;
+  }
+
+  .wrap{max-width:480px;margin:0 auto;position:relative;background:var(--cream);}
+
+  /* ---------- PRELOADER / SPLASH ---------- */
+  #preloader{
+    position:fixed;inset:0;z-index:999;
+    background:var(--sage-dark);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    color:#fff;cursor:pointer;
+    transition:opacity .8s ease, visibility .8s ease;
+  }
+  #preloader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
+  #preloader .mono{
+    width:120px;height:auto;margin-bottom:22px;filter:brightness(0) invert(1);opacity:.94;
+  }
+  #preloader .names{
+    font-family:'Pinyon Script',cursive;font-size:44px;margin-bottom:6px;color:#fff;
+  }
+  #preloader .sub{font-size:11px;letter-spacing:5px;text-transform:uppercase;opacity:.8;}
+  #preloader .tap{
+    font-size:11px;letter-spacing:4px;text-transform:uppercase;opacity:.9;margin-top:30px;
+    border:1px solid var(--gold-light);color:#fff;padding:13px 30px;border-radius:30px;
+    animation:pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{0%,100%{opacity:.6;}50%{opacity:1;}}
+
+  /* ---------- REVEAL ---------- */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease, transform .9s ease;}
+  .reveal.show{opacity:1;transform:translateY(0);}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;height:100vh;min-height:640px;overflow:hidden;
+    background:linear-gradient(160deg, var(--sage) 0%, var(--sage-dark) 100%);
+  }
+  .hero > img{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+  .hero::after{
+    content:'';position:absolute;inset:0;
+    background:linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.05) 50%, rgba(250,248,242,0.35) 76%, var(--cream) 100%);
+  }
+  .hero-content{
+    position:absolute;bottom:0;left:0;right:0;z-index:2;
+    text-align:center;padding:0 30px 34px 30px;
+  }
+  .hero-mono{width:58px;height:auto;margin-bottom:14px;opacity:.97;}
+  .hero-names{
+    font-family:'Cormorant Garamond',serif;font-weight:500;
+    font-size:46px;color:#2f2f28;line-height:1.1;
+  }
+  .hero-names .amp{font-family:'Pinyon Script',cursive;color:var(--gold);font-size:38px;padding:0 6px;}
+  .hero-loc{
+    font-size:11px;letter-spacing:4px;color:var(--sage-dark);margin-top:12px;font-weight:500;
+  }
+
+  /* ---------- SECTION ---------- */
+  section{padding:64px 32px;text-align:center;position:relative;}
+  .eyebrow{font-size:11.5px;letter-spacing:3.5px;color:var(--gold);font-weight:500;margin-bottom:8px;text-transform:uppercase;}
+  .title{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--text);font-weight:500;}
+  .title em{font-style:italic;color:var(--sage-dark);font-weight:500;}
+  .diamond-divider{width:7px;height:7px;background:var(--gold);transform:rotate(45deg);margin:20px auto;}
+
+  .card{
+    background:var(--card);border-radius:18px;
+    box-shadow:0 18px 46px -18px rgba(60,60,52,.18);
+    padding:38px 28px;
+  }
+
+  /* VERSE */
+  .verse-card-wrap{margin-top:-70px;padding:0 26px;position:relative;z-index:3;}
+  .verse-card{
+    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;line-height:1.7;color:#54544a;
+  }
+  .verse-ref{font-family:'Jost';font-style:normal;font-size:11px;letter-spacing:2.5px;color:var(--gold);margin-top:14px;font-weight:500;}
+
+  /* DATA / LOCAL */
+  .datalocal{display:flex;margin-top:34px;}
+  .datalocal > div{flex:1;padding:0 8px;}
+  .datalocal .sep{width:1px;background:var(--line);flex:none;}
+  .dl-label{font-size:10.5px;letter-spacing:2.5px;color:var(--muted);margin-bottom:8px;}
+  .dl-value{font-family:'Cormorant Garamond',serif;font-size:22px;color:var(--text);}
+  .dl-sub{font-size:11.5px;color:var(--muted);margin-top:2px;}
+
+  /* VENUE */
+  .badge{
+    display:inline-block;background:var(--sage-pale);color:var(--sage-dark);
+    font-size:11px;letter-spacing:2.5px;font-weight:500;padding:7px 18px;border-radius:30px;margin-bottom:16px;
+  }
+  .venue-photo{
+    width:100%;height:190px;object-fit:cover;border-radius:16px;margin-bottom:22px;
+    box-shadow:0 14px 36px -18px rgba(60,60,52,.3);display:block;
+  }
+  .venue-time{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:24px;color:var(--sage-dark);margin-bottom:4px;}
+  .venue-name{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);margin-bottom:10px;line-height:1.2;}
+  .venue-addr{font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:22px;}
+  .venue-sep{width:40px;height:1px;background:var(--line);margin:40px auto;}
+
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    border:1px solid #c7c6b4;border-radius:30px;padding:14px 30px;
+    font-size:11.5px;letter-spacing:2px;color:var(--text);text-decoration:none;background:transparent;
+  }
+  .btn svg{width:15px;height:15px;flex-shrink:0;}
+  .btn-filled{
+    background:var(--sage);color:#fff;border-color:var(--sage);
+    font-weight:500;padding:16px 30px;font-size:12px;
+  }
+  .btn-filled svg{stroke:#fff;}
+
+  /* COUNTDOWN */
+  .countdown{display:flex;justify-content:center;gap:10px;margin-top:30px;}
+  .countdown .box{flex:1;max-width:80px;}
+  .countdown .num{
+    font-family:'Cormorant Garamond',serif;font-size:38px;color:var(--text);
+    background:var(--card);border-radius:12px;padding:14px 0;
+    box-shadow:0 10px 26px -14px rgba(60,60,52,.18);
+  }
+  .countdown .lbl{font-size:9.5px;letter-spacing:1.5px;color:var(--muted);margin-top:8px;}
+
+  /* DRESS CODE */
+  .dress-photo{
+    width:100%;max-height:420px;object-fit:cover;border-radius:16px;margin-top:8px;
+    box-shadow:0 14px 36px -18px rgba(60,60,52,.3);display:block;
+  }
+  .palette{display:flex;justify-content:center;gap:14px;margin-top:26px;}
+  .palette .sw{text-align:center;}
+  .palette .dot{
+    width:46px;height:46px;border-radius:50%;margin:0 auto 8px;
+    box-shadow:0 8px 20px -8px rgba(60,60,52,.4);border:2px solid #fff;
+  }
+  .palette .cname{font-size:10px;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;}
+  .dress-note{font-size:13.5px;line-height:1.9;color:#5c5c50;max-width:320px;margin:24px auto 0;}
+  .dress-note b{color:var(--text);font-weight:500;}
+
+  .music-note{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:11px;letter-spacing:1.5px;color:var(--muted);
+    border:1px solid var(--line);border-radius:30px;padding:9px 20px;margin-top:22px;
+    text-decoration:none;
+  }
+  .music-note svg{width:13px;height:13px;stroke:var(--sage);}
+
+  /* PRESENTES */
+  .pix-title{font-size:11.5px;letter-spacing:2.5px;color:var(--gold);margin:34px 0 22px 0;font-weight:500;
+    display:flex;align-items:center;gap:14px;}
+  .pix-title::before,.pix-title::after{content:'';flex:1;height:1px;background:var(--line);}
+  .pix-box{background:var(--sage-pale);border-radius:16px;padding:22px 20px;margin-top:6px;}
+  .pix-key{font-family:'Jost';font-size:16px;color:var(--text);font-weight:500;letter-spacing:.5px;word-break:break-all;}
+  .pix-name{font-size:11.5px;color:var(--muted);margin-top:4px;}
+  .copy-btn{
+    display:inline-flex;align-items:center;gap:8px;margin-top:16px;
+    background:var(--sage-dark);color:#fff;border:none;border-radius:30px;
+    padding:11px 24px;font-size:11px;letter-spacing:2px;font-family:'Jost';cursor:pointer;
+  }
+  .copy-btn svg{width:13px;height:13px;stroke:#fff;}
+  .signature{font-family:'Pinyon Script',cursive;font-size:32px;color:var(--sage-dark);margin-top:22px;}
+  .small-note{font-size:11px;color:var(--muted);margin-top:8px;}
+
+  /* RSVP */
+  .rsvp-card p{font-size:13.5px;line-height:1.9;color:#5c5c50;margin-bottom:26px;}
+
+  /* FOOTER */
+  footer{padding:60px 32px 54px 32px;text-align:center;}
+  footer .mono{width:66px;margin-bottom:16px;}
+  footer .names{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--text);}
+  footer .names em{font-family:'Pinyon Script',cursive;font-style:normal;color:var(--gold);padding:0 4px;}
+  footer .date{font-size:11px;letter-spacing:3px;color:var(--muted);margin-top:8px;}
+  footer .verse{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:13.5px;color:var(--muted);margin-top:18px;line-height:1.6;}
+
+  /* FLOAT MUSIC */
+  #floatMusic{
+    position:fixed;bottom:22px;right:22px;z-index:50;
+    display:flex;align-items:center;gap:8px;
+    background:var(--card);color:var(--text);text-decoration:none;
+    border-radius:30px;padding:12px 18px;
+    box-shadow:0 10px 30px -10px rgba(60,60,52,.3);
+    font-size:10.5px;letter-spacing:1.5px;
+    opacity:0;transform:translateY(10px);transition:opacity .6s ease, transform .6s ease;
+  }
+  #floatMusic.show{opacity:1;transform:translateY(0);}
+  #floatMusic svg{width:14px;height:14px;stroke:var(--sage);}
+</style>
+</head>
+<body>
+
+<div id="preloader">
+  <img class="mono" src="monograma.png" alt="" onerror="this.style.display='none'">
+  <div class="names">Jeremias &amp; Iva</div>
+  <div class="sub">24 · 10 · 2026</div>
+  <div class="tap">Toque para abrir</div>
+  <div id="ytHolder" style="position:fixed;width:0;height:0;overflow:hidden;left:-100px;"></div>
+</div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <div class="hero">
+    <img src="foto-casal.jpg" alt="Jeremias e Iva" onerror="this.style.display='none'">
+    <div class="hero-content">
+      <img class="hero-mono" src="monograma.png" alt="" onerror="this.style.display='none'">
+      <div class="hero-names">Jeremias <span class="amp">&amp;</span> Iva</div>
+      <div class="hero-loc">FORTALEZA · CEARÁ</div>
+    </div>
+  </div>
+
+  <!-- VERSE -->
+  <div class="verse-card-wrap reveal">
+    <div class="card verse-card">
+      &ldquo;Deus mudou o teu caminho até juntares com o meu e guardou a tua vida separando-a para mim. Para onde fores, irei; onde tu repousares, repousarei. Teu Deus será o meu Deus. Teu caminho o meu será.&rdquo;
+      <div class="verse-ref">— RUTE 1:16-18</div>
+    </div>
+  </div>
+
+  <!-- O GRANDE DIA -->
+  <section class="reveal">
+    <div class="eyebrow">O grande dia</div>
+    <div class="title">Celebrem <em>conosco</em></div>
+    <div class="diamond-divider"></div>
+    <div class="datalocal">
+      <div>
+        <div class="dl-label">DATA</div>
+        <div class="dl-value">24 de Outubro</div>
+        <div class="dl-sub">2026 · Sábado</div>
+      </div>
+      <div class="sep"></div>
+      <div>
+        <div class="dl-label">LOCAL</div>
+        <div class="dl-value">Fortaleza</div>
+        <div class="dl-sub">Ceará</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERIMÔNIA & RECEPÇÃO -->
+  <section class="reveal" style="padding-top:0;">
+    <div class="badge">CERIMÔNIA</div>
+    <img class="venue-photo" src="foto-cerimonia.jpg" alt="Local da cerimônia" onerror="this.style.display='none'">
+    <div class="venue-time">às 16h00</div>
+    <div class="venue-name">Paróquia Nossa Senhora<br>das Graças</div>
+    <div class="venue-addr">
+      R. Fernando Farias de Melo, 830 — Manoel Sátiro<br>
+      Fortaleza — CE · 60713-480
+    </div>
+    <a class="btn" href="https://maps.app.goo.gl/H6KUXxezgYXZnePv7" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+      VER NO MAPA
+    </a>
+
+    <div class="venue-sep"></div>
+
+    <div class="badge">RECEPÇÃO</div>
+    <img class="venue-photo" src="foto-recepcao.jpg" alt="Local da recepção" onerror="this.style.display='none'">
+    <div class="venue-name">Dy Maria Buffet</div>
+    <div class="venue-addr">
+      R. Grécia, 239 — Parangaba<br>
+      Fortaleza — CE · 60710-520
+    </div>
+    <a class="btn" href="https://maps.app.goo.gl/cAmuiuc9drAX7mfe6" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.3"/></svg>
+      VER NO MAPA
+    </a>
+  </section>
+
+  <!-- DRESS CODE -->
+  <section class="reveal" style="padding-top:8px;">
+    <div class="eyebrow">Dress code</div>
+    <div class="title">Traje &amp; <em>paleta</em></div>
+    <div class="diamond-divider"></div>
+
+    <div class="card" style="margin-top:8px;">
+      <img class="dress-photo" src="dress-code.jpg" alt="Dress code" onerror="this.style.display='none'">
+      <div class="palette">
+        <div class="sw"><div class="dot" style="background:#5a6a41;"></div><div class="cname">Verde oliva</div></div>
+        <div class="sw"><div class="dot" style="background:#3f4d2e;"></div><div class="cname">Oliva escuro</div></div>
+        <div class="sw"><div class="dot" style="background:#a2833f;"></div><div class="cname">Dourado</div></div>
+      </div>
+      <p class="dress-note">
+        A paleta da celebração é <b>verde oliva</b>. Contamos com você para compor
+        conosco essa atmosfera — traje <b>social / esporte fino</b>.
+      </p>
+    </div>
+  </section>
+
+  <!-- COUNTDOWN -->
+  <section class="reveal" style="padding-top:8px;">
+    <div class="eyebrow">A contagem começou</div>
+    <div class="title">Faltam <em>pouco</em></div>
+    <div class="countdown">
+      <div class="box"><div class="num" id="cd-dias">00</div><div class="lbl">DIAS</div></div>
+      <div class="box"><div class="num" id="cd-horas">00</div><div class="lbl">HORAS</div></div>
+      <div class="box"><div class="num" id="cd-min">00</div><div class="lbl">MIN</div></div>
+      <div class="box"><div class="num" id="cd-seg">00</div><div class="lbl">SEG</div></div>
+    </div>
+  </section>
+
+  <!-- LISTA DE PRESENTES -->
+  <section class="reveal">
+    <div class="eyebrow">Lista de presentes</div>
+    <div class="title">Sugestões de <em>presentes</em></div>
+    <div class="diamond-divider"></div>
+
+    <div class="card" style="margin-top:8px;">
+      <p style="font-size:13.5px;line-height:1.9;color:#5c5c50;margin-bottom:24px;">
+        Se quiserem nos presentear, deixamos duas opções: nossa lista de presentes ou, se preferir, via Pix.
+      </p>
+      <a class="btn btn-filled" href="https://form.everestwebdeals.co/?form=87b430055cf17fecb9ee578e4c5cdf14" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M3 12h18"/><path d="M12 8v13"/><path d="M12 8c-1.7 0-3-1-3-2.5S10.3 3 12 3s3 1 3 2.5S13.7 8 12 8z"/></svg>
+        VER LISTA DE PRESENTES
+      </a>
+
+      <div class="pix-title">PRESENTEAR COM PIX</div>
+      <div class="pix-box">
+        <div class="pix-key" id="pixKey">85996859968</div>
+        <div class="pix-name">Iva Karoline Cardoso Gomes · Nubank</div>
+        <button class="copy-btn" onclick="copyPix()">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>
+          <span id="copyLabel">COPIAR CHAVE</span>
+        </button>
+      </div>
+
+      <div class="signature">Jeremias &amp; Iva</div>
+      <div class="small-note">Toque no botão para copiar a chave Pix</div>
+    </div>
+  </section>
+
+  <!-- CONFIRMAÇÃO -->
+  <section class="reveal">
+    <div class="eyebrow">Confirmação de presença</div>
+    <div class="title">Você <em>vem</em>?</div>
+    <div class="diamond-divider"></div>
+
+    <div class="card rsvp-card" style="margin-top:8px;">
+      <p>Sua presença fará deste dia um momento ainda mais especial.<br>
+      Confirme com um toque abaixo — você será levado ao nosso formulário de confirmação.</p>
+      <a class="btn btn-filled" href="https://docs.google.com/forms/d/e/1FAIpQLSd8pXtGYlFu-ncbklBBlAbgmhKlGxf1xxgmW_23NRw4iPJKrg/viewform" target="_blank" rel="noopener" style="width:100%;justify-content:center;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 6L9 17l-5-5"/></svg>
+        CONFIRMAR PRESENÇA
+      </a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="reveal">
+    <img class="mono" src="monograma.png" alt="" onerror="this.style.display='none'">
+    <div class="names">Jeremias <em>&amp;</em> Iva</div>
+    <div class="date">24 DE OUTUBRO DE 2026</div>
+    <div class="verse">&ldquo;Para onde fores, irei; onde tu repousares, repousarei.&rdquo;<br>— Rute 1:16</div>
+  </footer>
+
+</div>
+
+<a id="floatMusic" href="https://youtu.be/7AU4KXimRbY" target="_blank" rel="noopener">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg>
+  NOSSA MÚSICA
+</a>
+
+<script>
+  // Splash: fade out + tocar música (YouTube) ao toque
+  const preloader = document.getElementById('preloader');
+  preloader.addEventListener('click', () => {
+    preloader.classList.add('hidden');
+    try {
+      const holder = document.getElementById('ytHolder');
+      if (holder && !holder.dataset.on) {
+        holder.dataset.on = '1';
+        holder.innerHTML = '<iframe width="1" height="1" src="https://www.youtube.com/embed/7AU4KXimRbY?autoplay=1&loop=1&playlist=7AU4KXimRbY&controls=0" allow="autoplay" frameborder="0"></iframe>';
+      }
+    } catch(e){}
+    document.getElementById('floatMusic').classList.add('show');
+  });
+
+  // Contagem regressiva
+  const target = new Date('2026-10-24T16:00:00-03:00').getTime();
+  function updateCountdown(){
+    const now = new Date().getTime();
+    let diff = target - now; if(diff < 0) diff = 0;
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-dias').textContent = String(d).padStart(2,'0');
+    document.getElementById('cd-horas').textContent = String(h).padStart(2,'0');
+    document.getElementById('cd-min').textContent = String(m).padStart(2,'0');
+    document.getElementById('cd-seg').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown(); setInterval(updateCountdown, 1000);
+
+  // Copiar Pix
+  function copyPix(){
+    const key = document.getElementById('pixKey').textContent.trim();
+    navigator.clipboard.writeText(key).then(()=>{
+      const label = document.getElementById('copyLabel');
+      label.textContent = 'COPIADO!';
+      setTimeout(()=>{ label.textContent = 'COPIAR CHAVE'; }, 2000);
+    });
+  }
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('show'); } });
+  }, {threshold:0.12});
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+
+</body>
+</html>
